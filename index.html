@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Vendor Marketplace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Global Market</h1>
+        <nav>
+            <a href="#" id="nav-home">Home</a>
+            <a href="#" id="nav-orders">My Orders</a>
+            <a href="#" id="nav-cart">Cart (0)</a>
+            <a href="#" id="nav-vendor">Vendor Portal</a>
+            <a href="login.html" id="auth-nav-link">Login</a> 
+        </nav>
+    </header>
+
+    <div id="buyer-view">
+        <section class="search-section">
+            <h2>Find Products from Awesome Independent Vendors</h2>
+            <div class="search-container">
+                <input type="text" id="buyer-search" placeholder="Search for products, brands, or vendors...">
+                <button id="search-btn">Search</button>
+            </div>
+        </section>
+
+        <main>
+            <h2>Explore Our Catalog</h2>
+            <div id="products-grid" class="products-grid"></div>
+        </main>
+    </div>
+
+    <div id="orders-view" style="display: none;">
+        <main>
+            <h2>My Orders</h2>
+            <div id="orders-list" class="orders-list"></div>
+        </main>
+    </div>
+
+    <section id="cart-drawer" class="cart-drawer" style="display: none;">
+        <h2>Your Shopping Cart</h2>
+        <ul id="cart-items-list"></ul>
+        <div class="cart-summary">
+            <h3>Total: <span id="cart-total-price">$0.00</span></h3>
+            <button id="checkout-btn">Proceed to Checkout</button>
+            <button id="close-cart-btn">Close Cart</button>
+        </div>
+    </section>
+
+    <div id="vendor-view" style="display: none;">
+        <main class="vendor-dashboard">
+            <h2>Vendor Dashboard</h2>
+            <p class="vendor-subtitle">Add a new product to the global marketplace catalog.</p>
+            
+            <form id="add-product-form" class="vendor-form">
+                <div class="form-group">
+                    <label for="product-name">Product Name:</label>
+                    <input type="text" id="product-name" required placeholder="e.g., Wireless Mechanical Keyboard">
+                </div>
+                
+                <div class="form-group">
+                    <label for="vendor-name">Your Vendor/Brand Name:</label>
+                    <input type="text" id="vendor-name" required readonly style="background: #f0eefc; cursor: not-allowed;">
+                </div>
+
+                <div class="form-group">
+                    <label for="product-image">Product Image URL (Optional):</label>
+                    <input type="url" id="product-image" placeholder="e.g., https://images.unsplash.com/... (Leave blank for default)">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-price">Price ($):</label>
+                        <input type="number" id="product-price" step="0.01" min="0.10" required placeholder="29.99">
+                    </div>
+                    <div class="form-group">
+                        <label for="product-stock">Initial Stock Quantity:</label>
+                        <input type="number" id="product-stock" min="1" required placeholder="50">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Launch Product to Market</button>
+            </form>
+        </main>
+
+        <main class="vendor-dashboard">
+            <h2>Your Sales Stats</h2>
+            <div id="vendor-stats-table" class="vendor-stats-table"></div>
+        </main>
+
+        <main class="vendor-dashboard">
+            <h2>Your Listings</h2>
+            <div id="vendor-products-grid" class="products-grid"></div>
+        </main>
+    </div>
+<div id="edit-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <h3>Edit Product Listing</h3>
+        <form id="edit-product-form">
+            <input type="hidden" id="edit-product-id">
+            
+            <div class="form-group">
+                <label for="edit-product-name">Product Name:</label>
+                <input type="text" id="edit-product-name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="edit-vendor-name">Vendor/Brand Name:</label>
+                <input type="text" id="edit-vendor-name" required readonly style="background: #e9ecef; cursor: not-allowed;">
+            </div>
+
+            <div class="form-group">
+                <label for="edit-product-image">Product Image URL:</label>
+                <input type="url" id="edit-product-image">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="edit-product-price">Price ($):</label>
+                    <input type="number" id="edit-product-price" step="0.01" min="0.10" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-product-stock">Stock Quantity:</label>
+                    <input type="number" id="edit-product-stock" min="0" required>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="submit" class="save-btn">Save Changes</button>
+                <button type="button" id="close-edit-modal" class="cancel-btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <script src="app.js"></script>
+</body>
+</html>
